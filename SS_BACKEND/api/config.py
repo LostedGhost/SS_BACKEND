@@ -1,0 +1,6 @@
+DEFAULT_PASSWORD = "741085207410"
+KEY = 15
+
+MAX_LENGHT_LIBELLE = 50
+LENGTH_CODE = 30
+AUTH_EXPIRATION = 15 # minutes d'expiration de la la clé générée

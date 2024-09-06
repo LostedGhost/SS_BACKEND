@@ -34,7 +34,6 @@ class Utilisateur(models.Model):
     
     def to_json(self):
         return {
-            "id": self.id,
             "slug": self.slug,
             "nom": self.nom,
             "prenom": self.prenom,
@@ -43,7 +42,6 @@ class Utilisateur(models.Model):
             "photo": self.photo,
             "profil": self.profil.to_json(),
             "date_ajout": full_date_to_text(self.date_ajout),
-            "maisons": [maison.to_json() for maison in self.maisons()]
         }
     
     def maisons(self):
@@ -66,7 +64,6 @@ class AuthUser(models.Model):
     
     def to_json(self):
         return {
-            "id": self.id,
             "code": self.code,
             "utilisateur": self.utilisateur.to_json(),
             "date_expiration": full_date_to_text(self.date_expiration),
@@ -91,17 +88,17 @@ class Maison(models.Model):
     
     def to_json(self):
         return {
-            "id": self.id,
             "code": self.code,
             "nom": self.nom,
             "description": self.description,
             "date_ajout": full_date_to_text(self.date_ajout),
             "propietaire": self.proprietaire.to_json(),
-            "cameras": [cam.to_json() for cam in self.cameras()],
-            "periodes_surveillance": [period.to_json() for period in self.periods()],
-            "membres": [membre.to_json() for membre in self.membres()],
-            "intrusions": [intrusion.to_json() for intrusion in self.intrusions()],
+            
         }
+        h = {"cameras": [cam.to_json() for cam in self.cameras()],
+        "periodes_surveillance": [period.to_json() for period in self.periods()],
+        "membres": [membre.to_json() for membre in self.membres()],
+        "intrusions": [intrusion.to_json() for intrusion in self.intrusions()]}
     
     def cameras(self):
         return CameraMaison.objects.filter(maison=self)
@@ -136,7 +133,6 @@ class PeriodeSurveillanceMaison(models.Model):
     
     def to_json(self):
         return {
-            "id": self.id,
             "code": self.code,
             "date_debut": full_date_to_text(self.date_debut),
             "date_fin": full_date_to_text(self.date_fin),
@@ -162,7 +158,6 @@ class MembreMaison(models.Model):
     
     def to_json(self):
         return {
-            "id": self.id,
             "code": self.code,
             "nom": self.nom,
             "photo": self.photo,
@@ -190,7 +185,6 @@ class CameraMaison(models.Model):
     
     def to_json(self):
         return {
-            "id": self.id,
             "code": self.code,
             "nom": self.nom,
             "description": self.description,

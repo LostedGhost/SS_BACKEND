@@ -17,4 +17,6 @@ urlpatterns = [
     path('remove_home_member/', ajax.remove_home_member, name='remove_home_member'),
     path('read_home_member/', ajax.read_home_member, name='read_home_member'),
     path('handle_video_feed/<int:camera_id>/', ajax.api_handle_video_feed, name='handle_video_feed'),
+    
+    path('twiml_response/', ajax.twiml_response, name='twiml_response'),
 ]

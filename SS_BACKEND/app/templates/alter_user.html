@@ -1,0 +1,60 @@
+{%extends 'admin-temp/base.html'%}
+{%load static%}
+{%block title %}
+Modification d'utilisateur
+{%endblock%}
+{%block content %}
+<div>
+    <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis pt-7 pb-3 border-y">
+        <div class="pb-5">
+            <div class="row g-4">
+                <div class="col-12 col-xxl-6">
+                    <div class="row g-3 div-center">
+                        <form method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            <div class="row g-3 mb-6">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-icon-container">
+                                    <div class="form-floating"><input class="form-control form-icon-input" name="nom" type="text" placeholder="Nom" value="{{prop.nom}}"/><label class="text-body-tertiary form-icon-label" for="firstName">NOM</label></div><span class="fa-solid fa-user text-body fs-9 form-icon"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-icon-container">
+                                    <div class="form-floating"><input class="form-control form-icon-input" name="prenom" type="text" placeholder="Prénoms" value="{{prop.prenom}}"/><label class="text-body-tertiary form-icon-label" >PRENOMS</label></div><span class="fa-solid fa-user text-body fs-9 form-icon"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-icon-container">
+                                    <div class=""><label class="text-body-tertiary form-icon-label" >Email</label></div><input class="form-control form-icon-input" name="email" type="email" placeholder="example@gmail.com" value="{{prop.email}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-icon-container">
+                                    <div class=""><label class="text-body-tertiary form-icon-label" >Téléphone</label></div><input class="form-control form-icon-input" name="telephone" type="number" placeholder="61XXXXXX" value="{{prop.telephone_rep}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-icon-container">
+                                    <div class=""><label class="text-body-tertiary form-icon-label" >Mot de passe</label></div><input class="form-control form-icon-input" name="password" type="password" placeholder="******" value="{{prop.true_pass}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-icon-container">
+                                        <div class=""><label class="text-body-tertiary form-icon-label" >Photo de profil</label></div><input class="form-control form-icon-input" type="file" name="photo" placeholder="Photo de profil"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="div-center">
+                            <div class="col-12 col-sm-6 div-center">
+                                <a href="/users"><button class="btn btn-phoenix-secondary" type="button">Abandonner</button></a>
+                                <button class="btn btn-phoenix-primary" type="submit">Modifier</button>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

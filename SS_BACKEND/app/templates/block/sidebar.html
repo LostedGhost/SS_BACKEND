@@ -1,0 +1,115 @@
+{%load static%}
+<nav class="navbar navbar-vertical navbar-expand-lg">
+  <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+    <!-- scrollbar removed-->
+    <div class="navbar-vertical-content">
+      <ul class="navbar-nav flex-column" id="navbarVerticalNav">
+        <li class="nav-item">
+          <!-- parent pages-->
+          <p class="navbar-vertical-label">Menu</p>
+          <hr class="navbar-vertical-line" /><!-- parent pages-->
+          <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#nv-home" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-home">
+              <div class="d-flex align-items-center">
+                <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-icon"><span data-feather="pie-chart"></span></span><span class="nav-link-text">Actions</span><span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+              </div>
+            </a>
+            <div class="parent-wrapper label-1">
+              <ul class="nav collapse parent show" data-bs-parent="#navbarVerticalCollapse" id="nv-home">
+                <li class="collapsed-nav-item-title d-none">Actions</li>
+                <li class="nav-item"><a class="nav-link" href="/">
+                    <div class="d-flex align-items-center"><span class="nav-link-text">Accueil</span></div>
+                  </a><!-- more inner pages-->
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link dropdown-indicator" href="#user" data-bs-toggle="collapse" aria-expanded="false" aria-controls="user">
+                    <div class="d-flex align-items-center">
+                      <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Utilisateur</span>
+                    </div>
+                  </a><!-- more inner pages-->
+                  <div class="parent-wrapper">
+                    <ul class="nav collapse parent" data-bs-parent="#multi-level" id="user">
+                      <li class="nav-item">
+                        <a class="nav-link" href="/users">
+                          <div class="d-flex align-items-center"><span class="nav-link-text">Liste</span></div>
+                        </a><!-- more inner pages-->
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/add_user">
+                          <div class="d-flex align-items-center"><span class="nav-link-text">Ajout</span></div>
+                        </a><!-- more inner pages-->
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link dropdown-indicator" href="#home" data-bs-toggle="collapse" aria-expanded="false" aria-controls="home">
+                    <div class="d-flex align-items-center">
+                      <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Maison</span>
+                    </div>
+                  </a><!-- more inner pages-->
+                  <div class="parent-wrapper">
+                    <ul class="nav collapse parent" data-bs-parent="#multi-level" id="home">
+                      <li class="nav-item">
+                        <a class="nav-link" href="/homes">
+                          <div class="d-flex align-items-center"><span class="nav-link-text">Liste</span></div>
+                        </a><!-- more inner pages-->
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/add_home">
+                          <div class="d-flex align-items-center"><span class="nav-link-text">Ajout</span></div>
+                        </a><!-- more inner pages-->
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link dropdown-indicator" href="#camera" data-bs-toggle="collapse" aria-expanded="false" aria-controls="camera">
+                    <div class="d-flex align-items-center">
+                      <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Camera</span>
+                    </div>
+                  </a><!-- more inner pages-->
+                  <div class="parent-wrapper">
+                    <ul class="nav collapse parent" data-bs-parent="#multi-level" id="camera">
+                      <li class="nav-item">
+                        <a class="nav-link" href="/cameras">
+                          <div class="d-flex align-items-center"><span class="nav-link-text">Liste</span></div>
+                        </a><!-- more inner pages-->
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/add_camera">
+                          <div class="d-flex align-items-center"><span class="nav-link-text">Ajout</span></div>
+                        </a><!-- more inner pages-->
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link dropdown-indicator" href="#user" data-bs-toggle="collapse" aria-expanded="false" aria-controls="user">
+                    <div class="d-flex align-items-center">
+                      <div class="dropdown-indicator-icon-wrapper"><span class="fas fa-caret-right dropdown-indicator-icon"></span></div><span class="nav-link-text">Utilisateur</span>
+                    </div>
+                  </a><!-- more inner pages-->
+                  <div class="parent-wrapper">
+                    <ul class="nav collapse parent" data-bs-parent="#multi-level" id="user">
+                      <li class="nav-item">
+                        <a class="nav-link" href="/users">
+                          <div class="d-flex align-items-center"><span class="nav-link-text">Liste</span></div>
+                        </a><!-- more inner pages-->
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/add_user">
+                          <div class="d-flex align-items-center"><span class="nav-link-text">Ajout</span></div>
+                        </a><!-- more inner pages-->
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="navbar-vertical-footer"><button class="btn navbar-vertical-toggle border-0 fw-semibold w-100 white-space-nowrap d-flex align-items-center"><span class="uil uil-left-arrow-to-left fs-8"></span><span class="uil uil-arrow-from-right fs-8"></span><span class="navbar-vertical-footer-text ms-2">Collapsed View</span></button></div>
+</nav>

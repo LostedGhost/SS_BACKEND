@@ -3,6 +3,12 @@ from datetime import datetime, timedelta
 import random
 import string
 import requests
+from django.core.mail import send_mail
+from django.conf import settings
+from twilio.rest import Client
+from django.http import HttpResponse
+from twilio.twiml.voice_response import VoiceResponse
+
 
 
 def generate_string(length=12):
@@ -55,6 +61,31 @@ def chiffrement(message) -> str:
             message_chiffre += caractere
     return message_chiffre
 
+def dechiffrement(message) -> str:
+    decalage = -KEY
+    message_chiffre = ""
+    for caractere in message:
+        # Vérifier si le caractère est une lettre majuscule
+        if caractere.isupper():
+            ascii_code = ord(caractere)
+            nouveau_code = (ascii_code - ord('A') + decalage) % 26 + ord('A')
+            message_chiffre += chr(nouveau_code)
+        # Vérifier si le caractère est une lettre minuscule
+        elif caractere.islower():
+            ascii_code = ord(caractere)
+            nouveau_code = (ascii_code - ord('a') + decalage) % 26 + ord('a')
+            message_chiffre += chr(nouveau_code)
+        # Vérifier si le caractère est un chiffre
+        elif caractere.isdigit():
+            ascii_code = ord(caractere)
+            nouveau_code = (ascii_code - ord('0') + decalage) % 10 + ord('0')
+            message_chiffre += chr(nouveau_code)
+        # Si le caractère est un caractère spécial, le laisser inchangé
+        else:
+            message_chiffre += caractere
+    return message_chiffre
+          
+
 def is_strong_password(password):
     lowercase_letters = string.ascii_lowercase
     uppercase_letters = string.ascii_uppercase
@@ -98,4 +129,40 @@ def is_valid_phone_number(phone_number):
     response = requests.get(url).json()
     valid = response.get('valid')
     return valid
+
+def send_personalized_email(subject, message, recipient_list):
+    send_mail(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        recipient_list,
+        fail_silently=False,
+    )
+
+def twiml_response(request):
+    response = VoiceResponse()
+    response.say("Une intrusion a été détectée dans votre maison. Veuillez vérifier immédiatement.")
+    return HttpResponse(str(response), content_type='text/xml')
+
+
+def call_user(phone_number):
+    """
+    Appelle l'utilisateur en cas d'intrusion.
+
+    :param phone_number: Le numéro de téléphone de l'utilisateur.
+    """
+    # Remplace ces valeurs par tes informations Twilio
+    account_sid = 'AC45f25e7868c38531bfae70093019136d'
+    auth_token = '7a9a2c43a81c30aec8c759b27c631a94'
+    twilio_number = '+18437798980'
+    
+    client = Client(account_sid, auth_token)
+
+    call = client.calls.create(
+        to=phone_number,
+        from_=twilio_number,
+        url='http://127.0.0.1:8000/twiml_response/'  # URL pour la musique de mise en attente
+    )
+
+    return call.sid
 

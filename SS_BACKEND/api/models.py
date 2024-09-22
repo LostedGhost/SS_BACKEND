@@ -20,7 +20,7 @@ class Utilisateur(models.Model):
     password = models.CharField(max_length=MAX_LENGHT_LIBELLE)
     photo = models.ImageField(upload_to='photos/Utilisateur/', null=True, blank=True)
     profil = models.ForeignKey(Profil, on_delete=models.CASCADE)
-    date_ajout = models.DateTimeField(default=datetime.now())
+    date_ajout = models.DateTimeField(auto_now_add=True)
     
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -43,6 +43,15 @@ class Utilisateur(models.Model):
             "profil": self.profil.to_json(),
             "date_ajout": full_date_to_text(self.date_ajout),
         }
+    
+    def true_pass(self):
+        return dechiffrement(self.password)
+    
+    def telephone_rep(self):
+        return self.telephone[4::]
+    
+    def nom_prenom(self):
+        return f"{self.nom} {self.prenom}"
     
     def maisons(self):
         return Maison.objects.filter(proprietaire=self)

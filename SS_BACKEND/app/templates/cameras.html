@@ -1,0 +1,76 @@
+{%extends 'admin-temp/base.html'%}
+{%load static%}
+{%block title %}
+Caméras
+{%endblock%}
+{%block content %}
+<div>
+    <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis pt-7 pb-3 border-y">
+        <div class="pb-5">
+            <div class="row g-4">
+                <div class="col-12 col-xxl-6">
+                    <div class="row g-3 div-center">
+                        <div class="row mt-3">
+                            <div class="col-12">
+                              <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis pt-6 border-top">
+                                <div id="projectSummary" data-list='{"valueNames":["date_ajout","nom", "description", "prop"],"page":10,"pagination":true}'>
+                                  <div class="row align-items-end justify-content-between pb-4 g-3">
+                                    <div class="col-auto">
+                                      <h3>Caméras</h3>
+                                    </div>
+                                  </div>
+                                  <div class="table-responsive ms-n1 ps-1 scrollbar">
+                                    <table class="table fs-9 mb-0 border-top border-translucent">
+                                      <thead>
+                                        <tr>
+                                          <th class="sort white-space-nowrap align-middle ps-0" scope="col" data-sort="date_ajout" style="width:15%;">Date de prise</th>
+                                          <th class="sort white-space-nowrap align-middle ps-0" scope="col" data-sort="nom" style="width:20%;">Nom</th>
+                                          <th class="sort white-space-nowrap align-middle ps-0" scope="col" data-sort="description" style="width:25%;">Description</th>
+                                          <th class="sort white-space-nowrap align-middle ps-0" scope="col" data-sort="prop" style="width:30%;">Propriétaire</th>
+                                          <th class="sort align-middle ps-3" scope="col" data-sort="" style="width:10%;">Action</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody class="list" id="project-summary-table-body">
+                                        {%if nb_donnees == 0%}
+                                        <tr class="alert alert-subtle-danger" role="alert"><td colspan="2" class="text-center">Aucune donnée disponible</td></tr>
+                                        {%else%}
+                                        {%for data in users%}
+                                        <tr class="position-static">
+                                            <td class="align-middle time white-space-nowrap ps-0 date_ajout">{{data.date_ajout}}</td>
+                                            <td class="align-middle time white-space-nowrap ps-0 nom">{{data.nom}}</td>
+                                            <td class="align-middle time white-space-nowrap ps-0 description">{{data.description}}</td>
+                                            <td class="align-middle time white-space-nowrap ps-0 prop"><img src="{%if data.proprietaire.photo %}{{data.proprietaire.photo.url}}{%else%}{%static 'assets/img/profile.png' %}{%endif%}" class="rounded-circle avatar avatar-l">{{data.proprietaire.nom_prenom}}</td>
+                                            <td class="align-middle white-space-nowrap text-end pe-0">
+                                                <div class="btn-reveal-trigger position-static"><button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs-10"></span></button>
+                                                    <div class="dropdown-menu dropdown-menu-end py-2">
+                                                        <a class="dropdown-item" href="/edit_home/{{data.code}}">Modification</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item text-danger" href="/delete_home/{{data.code}}">Suppression</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                          </tr>
+                                          {%endfor%}
+                                          {%endif%}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  <div class="row align-items-center justify-content-between py-2 pe-0 fs-9">
+                                    <div class="col-auto d-flex">
+                                      <p class="mb-0 d-none d-sm-block me-3 fw-semibold text-body" data-list-info="data-list-info"></p><a class="fw-semibold" href="#!" data-list-view="*">View all<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a><a class="fw-semibold d-none" href="#!" data-list-view="less">View Less<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                                    </div>
+                                    <div class="col-auto d-flex"><button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                                      <ul class="mb-0 pagination"></ul><button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
